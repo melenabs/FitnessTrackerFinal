@@ -1,10 +1,38 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="hero text-center">
+    <h1 class="display-4">Track. Train. Improve.</h1>
+    <p>Log your workouts, plan your meals, and keep your fitness goals within reach.</p>
+    <a class="btn btn-primary btn-lg" asp-page="/Workouts/Index">Start a workout</a>
+</section>
+
+<div class="row g-3">
+    <div class="col-12 col-md-6 col-lg-3">
+        <a class="card feature-card" asp-page="/Workouts/Index">
+            <h2>Workouts</h2>
+            <p>Record every session.</p>
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <a class="card feature-card" asp-page="/Exercises/Index">
+            <h2>Exercises</h2>
+            <p>Build your exercise library.</p>
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <a class="card feature-card" asp-page="/Meals/Index">
+            <h2>Meals</h2>
+            <p>Keep tabs on nutrition.</p>
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <a class="card feature-card" asp-page="/Goals/Index">
+            <h2>Goals</h2>
+            <p>Set targets and hit them.</p>
+        </a>
+    </div>
 </div>
