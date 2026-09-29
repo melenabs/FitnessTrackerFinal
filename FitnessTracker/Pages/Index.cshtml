@@ -1,10 +1,42 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="hero text-center mb-4">
+    <h1 class="display-4 text-white">Track every rep. Own every goal.</h1>
+    <p class="lead mb-4">Log workouts, plan meals, and watch your progress add up.</p>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <a asp-page="/Workouts/Create" class="btn btn-accent btn-lg">Log a workout</a>
+    }
+    else
+    {
+        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-accent btn-lg">Get started</a>
+        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-light btn-lg ms-2">Log in</a>
+    }
+</section>
+
+<div class="row g-3">
+    <div class="col-6 col-md-3">
+        <a asp-page="/Workouts/Index" class="card feature-tile shadow-sm h-100 p-3 text-center">
+            <div class="fs-1">🏃</div><h2 class="h5 mb-0">Workouts</h2>
+        </a>
+    </div>
+    <div class="col-6 col-md-3">
+        <a asp-page="/Exercises/Index" class="card feature-tile shadow-sm h-100 p-3 text-center">
+            <div class="fs-1">💪</div><h2 class="h5 mb-0">Exercises</h2>
+        </a>
+    </div>
+    <div class="col-6 col-md-3">
+        <a asp-page="/Meals/Index" class="card feature-tile shadow-sm h-100 p-3 text-center">
+            <div class="fs-1">🥗</div><h2 class="h5 mb-0">Meals</h2>
+        </a>
+    </div>
+    <div class="col-6 col-md-3">
+        <a asp-page="/Goals/Index" class="card feature-tile shadow-sm h-100 p-3 text-center">
+            <div class="fs-1">🎯</div><h2 class="h5 mb-0">Goals</h2>
+        </a>
+    </div>
 </div>
