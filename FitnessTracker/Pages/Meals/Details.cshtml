@@ -1,0 +1,65 @@
+@page
+@model FitnessTracker.Pages.Meals.DetailsModel
+
+@{
+    ViewData["Title"] = "Details Meal";
+}
+
+<h1 class="h3 mb-3">Details Meal</h1>
+
+<div>
+    <dl class="row border rounded p-3 mx-0 shadow-sm">
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Meal.ApplicationUser)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Meal.ApplicationUser.Id)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Meal.MealName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Meal.MealName)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Meal.Calories)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Meal.Calories)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Meal.Protein)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Meal.Protein)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Meal.Carbs)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Meal.Carbs)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Meal.Fat)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Meal.Fat)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Meal.MealDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Meal.MealDate)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Meal.Notes)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Meal.Notes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Meal.ID" class="btn btn-primary">Edit</a>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+</div>

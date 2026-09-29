@@ -1,0 +1,53 @@
+@page
+@model FitnessTracker.Pages.Goals.DetailsModel
+
+@{
+    ViewData["Title"] = "Details Goal";
+}
+
+<h1 class="h3 mb-3">Details Goal</h1>
+
+<div>
+    <dl class="row border rounded p-3 mx-0 shadow-sm">
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.ApplicationUser)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.ApplicationUser.Id)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.GoalName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.GoalName)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.GoalType)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.GoalType)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.TargetValue)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.TargetValue)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.CurrentValue)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.CurrentValue)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.TargetDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.TargetDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Goal.ID" class="btn btn-primary">Edit</a>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+</div>

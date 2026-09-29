@@ -1,0 +1,58 @@
+@page
+@model FitnessTracker.Pages.Goals.EditModel
+
+@{
+    ViewData["Title"] = "Edit Goal";
+}
+
+<h1 class="h3 mb-3">Edit Goal</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" class="card card-body shadow-sm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Goal.ID" />
+            <div class="mb-3">
+                <label asp-for="Goal.ApplicationUserId" class="form-label"></label>
+                <select asp-for="Goal.ApplicationUserId" class="form-select" asp-items="ViewBag.ApplicationUserId" ></select>
+                <span asp-validation-for="Goal.ApplicationUserId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Goal.GoalName" class="form-label"></label>
+                <input asp-for="Goal.GoalName" class="form-control" />
+                <span asp-validation-for="Goal.GoalName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Goal.GoalType" class="form-label"></label>
+                <input asp-for="Goal.GoalType" class="form-control" />
+                <span asp-validation-for="Goal.GoalType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Goal.TargetValue" class="form-label"></label>
+                <input asp-for="Goal.TargetValue" class="form-control" />
+                <span asp-validation-for="Goal.TargetValue" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Goal.CurrentValue" class="form-label"></label>
+                <input asp-for="Goal.CurrentValue" class="form-control" />
+                <span asp-validation-for="Goal.CurrentValue" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Goal.TargetDate" class="form-label"></label>
+                <input asp-for="Goal.TargetDate" class="form-control" />
+                <span asp-validation-for="Goal.TargetDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

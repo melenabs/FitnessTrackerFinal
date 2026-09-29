@@ -1,0 +1,59 @@
+@page
+@model FitnessTracker.Pages.Workouts.DetailsModel
+
+@{
+    ViewData["Title"] = "Details Workout";
+}
+
+<h1 class="h3 mb-3">Details Workout</h1>
+
+<div>
+    <dl class="row border rounded p-3 mx-0 shadow-sm">
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Workout.ApplicationUser)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Workout.ApplicationUser.Id)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Workout.WorkoutName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Workout.WorkoutName)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Workout.WorkoutType)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Workout.WorkoutType)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Workout.DurationMinutes)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Workout.DurationMinutes)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Workout.CaloriesBurned)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Workout.CaloriesBurned)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Workout.WorkoutDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Workout.WorkoutDate)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Workout.Notes)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Workout.Notes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Workout.ID" class="btn btn-primary">Edit</a>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+</div>

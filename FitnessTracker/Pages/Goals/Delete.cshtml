@@ -1,0 +1,56 @@
+@page
+@model FitnessTracker.Pages.Goals.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Goal";
+}
+
+<h1 class="h3 mb-3">Delete Goal</h1>
+
+<div class="alert alert-danger">Are you sure you want to delete this?</div>
+<div>
+    <dl class="row border rounded p-3 mx-0 shadow-sm">
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.ApplicationUser)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.ApplicationUser.Id)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.GoalName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.GoalName)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.GoalType)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.GoalType)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.TargetValue)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.TargetValue)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.CurrentValue)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.CurrentValue)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.Goal.TargetDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Goal.TargetDate)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Goal.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+    </form>
+</div>

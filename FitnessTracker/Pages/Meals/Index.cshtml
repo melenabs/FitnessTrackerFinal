@@ -1,0 +1,83 @@
+@page
+@model FitnessTracker.Pages.Meals.IndexModel
+
+@{
+    ViewData["Title"] = "Meals";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Meals</h1>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
+</div>
+<div class="card shadow-sm">
+<div class="table-responsive">
+<table class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal[0].ApplicationUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal[0].MealName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal[0].Calories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal[0].Protein)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal[0].Carbs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal[0].Fat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal[0].MealDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal[0].Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Meal) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calories)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Protein)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carbs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td class="text-end">
+                <div class="btn-group btn-group-sm" role="group">
+                    <a class="btn btn-outline-secondary" asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                    <a class="btn btn-outline-primary" asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                    <a class="btn btn-outline-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

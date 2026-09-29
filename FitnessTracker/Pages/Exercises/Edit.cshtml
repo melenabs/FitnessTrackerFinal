@@ -1,0 +1,43 @@
+@page
+@model FitnessTracker.Pages.Exercises.EditModel
+
+@{
+    ViewData["Title"] = "Edit Exercise";
+}
+
+<h1 class="h3 mb-3">Edit Exercise</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" class="card card-body shadow-sm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Exercise.ID" />
+            <div class="mb-3">
+                <label asp-for="Exercise.Name" class="form-label"></label>
+                <input asp-for="Exercise.Name" class="form-control" />
+                <span asp-validation-for="Exercise.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Exercise.MuscleGroup" class="form-label"></label>
+                <input asp-for="Exercise.MuscleGroup" class="form-control" />
+                <span asp-validation-for="Exercise.MuscleGroup" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Exercise.Description" class="form-label"></label>
+                <input asp-for="Exercise.Description" class="form-control" />
+                <span asp-validation-for="Exercise.Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

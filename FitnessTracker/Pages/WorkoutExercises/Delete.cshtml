@@ -1,0 +1,50 @@
+@page
+@model FitnessTracker.Pages.WorkoutExercises.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Workout Exercise";
+}
+
+<h1 class="h3 mb-3">Delete Workout Exercise</h1>
+
+<div class="alert alert-danger">Are you sure you want to delete this?</div>
+<div>
+    <dl class="row border rounded p-3 mx-0 shadow-sm">
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.Workout)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.Workout.ID)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.Exercise)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.Exercise.ID)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.Sets)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.Sets)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.Reps)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.Reps)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.WeightUsed)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.WeightUsed)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="WorkoutExercise.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+    </form>
+</div>

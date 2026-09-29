@@ -1,0 +1,61 @@
+@page
+@model FitnessTracker.Pages.Workouts.CreateModel
+
+        @{
+        ViewData["Title"] = "Create Workout";
+        }
+        
+        <h1 class="h3 mb-3">Create Workout</h1>
+        
+    <div class="row">
+    <div class="col-md-6">
+    <form method="post" class="card card-body shadow-sm">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Workout.ApplicationUserId" class="form-label"></label>
+                <select asp-for="Workout.ApplicationUserId" class="form-select" asp-items="ViewBag.ApplicationUserId" ></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Workout.WorkoutName" class="form-label"></label>
+                <input asp-for="Workout.WorkoutName" class="form-control" />
+                <span asp-validation-for="Workout.WorkoutName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Workout.WorkoutType" class="form-label"></label>
+                <input asp-for="Workout.WorkoutType" class="form-control" />
+                <span asp-validation-for="Workout.WorkoutType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Workout.DurationMinutes" class="form-label"></label>
+                <input asp-for="Workout.DurationMinutes" class="form-control" />
+                <span asp-validation-for="Workout.DurationMinutes" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Workout.CaloriesBurned" class="form-label"></label>
+                <input asp-for="Workout.CaloriesBurned" class="form-control" />
+                <span asp-validation-for="Workout.CaloriesBurned" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Workout.WorkoutDate" class="form-label"></label>
+                <input asp-for="Workout.WorkoutDate" class="form-control" />
+                <span asp-validation-for="Workout.WorkoutDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Workout.Notes" class="form-label"></label>
+                <input asp-for="Workout.Notes" class="form-control" />
+                <span asp-validation-for="Workout.Notes" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

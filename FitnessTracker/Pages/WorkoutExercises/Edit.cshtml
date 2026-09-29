@@ -1,0 +1,53 @@
+@page
+@model FitnessTracker.Pages.WorkoutExercises.EditModel
+
+@{
+    ViewData["Title"] = "Edit Workout Exercise";
+}
+
+<h1 class="h3 mb-3">Edit Workout Exercise</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" class="card card-body shadow-sm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="WorkoutExercise.ID" />
+            <div class="mb-3">
+                <label asp-for="WorkoutExercise.WorkoutID" class="form-label"></label>
+                <select asp-for="WorkoutExercise.WorkoutID" class="form-select" asp-items="ViewBag.WorkoutID" ></select>
+                <span asp-validation-for="WorkoutExercise.WorkoutID" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="WorkoutExercise.ExerciseID" class="form-label"></label>
+                <select asp-for="WorkoutExercise.ExerciseID" class="form-select" asp-items="ViewBag.ExerciseID" ></select>
+                <span asp-validation-for="WorkoutExercise.ExerciseID" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="WorkoutExercise.Sets" class="form-label"></label>
+                <input asp-for="WorkoutExercise.Sets" class="form-control" />
+                <span asp-validation-for="WorkoutExercise.Sets" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="WorkoutExercise.Reps" class="form-label"></label>
+                <input asp-for="WorkoutExercise.Reps" class="form-control" />
+                <span asp-validation-for="WorkoutExercise.Reps" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="WorkoutExercise.WeightUsed" class="form-label"></label>
+                <input asp-for="WorkoutExercise.WeightUsed" class="form-control" />
+                <span asp-validation-for="WorkoutExercise.WeightUsed" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

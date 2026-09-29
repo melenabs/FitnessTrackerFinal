@@ -1,0 +1,71 @@
+@page
+@model FitnessTracker.Pages.Goals.IndexModel
+
+@{
+    ViewData["Title"] = "Goals";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Goals</h1>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
+</div>
+<div class="card shadow-sm">
+<div class="table-responsive">
+<table class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Goal[0].ApplicationUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Goal[0].GoalName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Goal[0].GoalType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Goal[0].TargetValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Goal[0].CurrentValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Goal[0].TargetDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Goal) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoalName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoalType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetDate)
+            </td>
+            <td class="text-end">
+                <div class="btn-group btn-group-sm" role="group">
+                    <a class="btn btn-outline-secondary" asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                    <a class="btn btn-outline-primary" asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                    <a class="btn btn-outline-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

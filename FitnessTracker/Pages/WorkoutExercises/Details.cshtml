@@ -1,0 +1,47 @@
+@page
+@model FitnessTracker.Pages.WorkoutExercises.DetailsModel
+
+@{
+    ViewData["Title"] = "Details Workout Exercise";
+}
+
+<h1 class="h3 mb-3">Details Workout Exercise</h1>
+
+<div>
+    <dl class="row border rounded p-3 mx-0 shadow-sm">
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.Workout)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.Workout.ID)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.Exercise)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.Exercise.ID)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.Sets)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.Sets)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.Reps)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.Reps)
+        </dd>
+        <dt class="col-sm-3 text-muted">
+            @Html.DisplayNameFor(model => model.WorkoutExercise.WeightUsed)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.WorkoutExercise.WeightUsed)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.WorkoutExercise.ID" class="btn btn-primary">Edit</a>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
