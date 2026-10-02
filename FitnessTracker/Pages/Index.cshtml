@@ -9,7 +9,10 @@
     <p class="lead mb-4">Log workouts, plan meals, and watch your progress add up.</p>
     @if (User.Identity?.IsAuthenticated == true)
     {
-        <a asp-page="/Workouts/Create" class="btn btn-accent btn-lg">Log a workout</a>
+        <div class="d-flex flex-column align-items-center gap-2">
+            <a asp-page="/Subscription" class="btn btn-primary btn-lg">Subscribe</a>
+            <a asp-page="/Workouts/Create" class="btn btn-accent btn-lg">Log a workout</a>
+        </div>
     }
     else
     {
