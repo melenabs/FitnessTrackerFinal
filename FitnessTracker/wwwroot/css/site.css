@@ -26,48 +26,87 @@ body {
   text-align: start;
 }
 
-/* ---------- Theme ---------- */
+/* ---------- Theme ----------
+   Flat, editorial look (hairline borders, pill buttons, light oversized headings,
+   near-black and warm-beige surfaces) in a green and orange palette. */
 :root {
   --ft-primary: #16a34a;
   --ft-primary-dark: #15803d;
   --ft-accent: #f97316;
-  --ft-ink: #0f172a;
-  --ft-surface: #f8fafc;
-  --ft-radius: 0.75rem;
+  --ft-ink: #0e0e0e;
+  --ft-surface: #f1efeb;
+  --ft-card: #ffffff;
+  --ft-muted: #666d73;
+  --ft-hairline: rgba(14, 14, 14, 0.14);
+  --ft-hairline-inverse: rgba(255, 255, 255, 0.2);
+  --ft-radius: 14px;
+  --ft-pill: 100px;
+  --ft-ease: cubic-bezier(0.165, 0.84, 0.44, 1);
   --bs-primary: var(--ft-primary);
   --bs-primary-rgb: 22, 163, 74;
   --bs-link-color: var(--ft-primary-dark);
-  --bs-link-hover-color: var(--ft-primary);
-  --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-link-hover-color: var(--ft-accent);
+  --bs-body-color: var(--ft-ink);
+  --bs-body-font-family: "Inter", "Helvetica Neue", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-border-color: var(--ft-hairline);
 }
 
 body {
   background: var(--ft-surface);
   color: var(--ft-ink);
+  font-size: 0.9rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  padding-top: 2rem;
 }
 
 h1, h2, h3, h4, h5 {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
 }
 
-/* Navbar */
+h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); }
+.h3, h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+.display-4 {
+  font-size: clamp(2.75rem, 8vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+a {
+  text-underline-offset: 0.2em;
+}
+
+/* Navbar: flat black bar with a hairline edge */
 .navbar {
   background: var(--ft-ink) !important;
-  border-bottom: 3px solid var(--ft-primary) !important;
+  border: 0 !important;
+  box-shadow: inset 0 -1px 0 var(--ft-hairline-inverse) !important;
+  padding: 0.9rem 0;
 }
 
 .navbar .navbar-brand {
   color: #fff;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
+}
+
+.navbar .navbar-brand:hover {
+  color: var(--ft-accent);
 }
 
 .navbar .nav-link,
 .navbar .nav-link.text-dark {
-  color: rgba(255, 255, 255, 0.75) !important;
-  border-radius: 0.5rem;
-  transition: color 0.15s, background-color 0.15s;
+  color: rgba(255, 255, 255, 0.7) !important;
+  border-radius: var(--ft-pill);
+  padding: 0.35rem 0.9rem;
+  transition: color 0.3s var(--ft-ease), background-color 0.3s var(--ft-ease);
 }
 
 .navbar .nav-link:hover {
@@ -76,22 +115,36 @@ h1, h2, h3, h4, h5 {
 }
 
 .navbar .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: var(--ft-hairline-inverse);
   filter: invert(1);
 }
 
-/* Buttons */
+/* Buttons: pills, flat, no shadow */
 .btn {
-  border-radius: 0.5rem;
-  font-weight: 600;
+  border-radius: var(--ft-pill);
+  font-weight: 400;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  transition: background-color 0.3s var(--ft-ease), color 0.3s var(--ft-ease),
+              border-color 0.3s var(--ft-ease), transform 0.3s var(--ft-ease);
+}
+
+.btn-sm {
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .btn-primary {
   --bs-btn-bg: var(--ft-primary);
-  --bs-btn-border-color: var(--ft-primary-dark);
-  --bs-btn-hover-bg: var(--ft-primary-dark);
-  --bs-btn-hover-border-color: var(--ft-primary-dark);
-  --bs-btn-active-bg: var(--ft-primary-dark);
+  --bs-btn-border-color: var(--ft-primary);
+  --bs-btn-hover-bg: var(--ft-accent);
+  --bs-btn-hover-border-color: var(--ft-accent);
+  --bs-btn-active-bg: var(--ft-accent);
+  --bs-btn-active-border-color: var(--ft-accent);
 }
 
 .btn-outline-primary {
@@ -102,72 +155,164 @@ h1, h2, h3, h4, h5 {
   --bs-btn-active-bg: var(--ft-primary-dark);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus, .form-select:focus {
-  border-color: var(--ft-primary);
-  box-shadow: 0 0 0 0.2rem rgba(22, 163, 74, 0.25);
+.btn-outline-secondary {
+  --bs-btn-color: var(--ft-ink);
+  --bs-btn-border-color: var(--ft-hairline);
+  --bs-btn-hover-bg: var(--ft-ink);
+  --bs-btn-hover-border-color: var(--ft-ink);
 }
 
-/* Cards & tables */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus, .form-select:focus {
+  border-color: var(--ft-primary);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.25);
+}
+
+/* Cards: flat white panels with a hairline border, no shadows */
 .card {
-  border: 0;
+  background: var(--ft-card);
+  border: 1px solid var(--ft-hairline);
   border-radius: var(--ft-radius);
   overflow: hidden;
 }
 
-.table thead th {
+.shadow-sm, .box-shadow {
+  box-shadow: none !important;
+}
+
+/* Tables */
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--ft-hairline);
+}
+
+.table thead th,
+.table-light {
+  background: transparent;
+  --bs-table-bg: transparent;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ft-muted);
   white-space: nowrap;
+  border-bottom: 1px solid var(--ft-ink);
+}
+
+.table > :not(caption) > * > * {
+  padding: 0.9rem 1rem;
 }
 
 .table-hover > tbody > tr:hover > * {
-  --bs-table-hover-bg: rgba(22, 163, 74, 0.06);
+  --bs-table-hover-bg: rgba(22, 163, 74, 0.07);
 }
 
 /* Forms */
 .form-control, .form-select {
-  border-radius: 0.5rem;
+  background-color: var(--ft-card);
+  border: 1px solid var(--ft-hairline);
+  border-radius: var(--ft-radius);
+  padding: 0.65rem 0.9rem;
 }
 
 .form-label {
+  font-size: 0.7rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ft-muted);
 }
 
-/* Footer */
+.alert {
+  border-radius: var(--ft-radius);
+}
+
+/* Footer: flat black, matching the navbar */
 .footer {
-  background: #fff;
+  background: var(--ft-ink);
+  color: rgba(255, 255, 255, 0.7) !important;
+  border: 0 !important;
+  box-shadow: inset 0 1px 0 var(--ft-hairline-inverse);
+  font-size: 0.9rem;
 }
 
-/* Home hero */
+.footer a {
+  color: #fff;
+}
+
+.footer a:hover {
+  color: var(--ft-accent);
+}
+
+/* Home hero: big, light type on black */
 .hero {
-  padding: 4rem 1.5rem;
+  padding: clamp(3rem, 9vw, 7rem) 1.5rem;
   border-radius: var(--ft-radius);
   color: #fff;
-  background: linear-gradient(135deg, var(--ft-ink) 0%, #14532d 60%, var(--ft-primary) 100%);
+  background: var(--ft-ink);
+  box-shadow: inset 0 0 0 1px var(--ft-hairline-inverse);
+}
+
+.hero .display-4 {
+  max-width: 14ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero .lead {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
 }
 
 .hero .btn-accent {
   background: var(--ft-accent);
   border-color: var(--ft-accent);
+  color: var(--ft-ink);
+}
+
+.hero .btn-accent:hover {
+  background: var(--ft-primary);
+  border-color: var(--ft-primary);
   color: #fff;
 }
 
+.hero .btn-outline-light {
+  --bs-btn-border-color: var(--ft-hairline-inverse);
+}
+
+/* Home tiles: flat, with a fill sweep on hover */
 .feature-tile {
-  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  min-height: 9rem;
+  justify-content: flex-end;
+  text-align: left !important;
   text-decoration: none;
   color: inherit;
+  transition: background-color 0.3s var(--ft-ease), color 0.3s var(--ft-ease),
+              border-color 0.3s var(--ft-ease);
+}
+
+.feature-tile h2 {
+  font-size: 1.6rem;
+}
+
+.feature-tile::after {
+  content: "\2197";
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 1.1rem;
+  transition: transform 0.3s var(--ft-ease), color 0.3s var(--ft-ease);
 }
 
 .feature-tile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0.5rem 1.25rem rgba(15, 23, 42, 0.12) !important;
-  color: inherit;
+  background: var(--ft-primary);
+  border-color: var(--ft-primary);
+  color: #fff;
+}
+
+.feature-tile:hover::after {
+  transform: translate(3px, -3px);
+  color: var(--ft-accent);
 }
 
 /* Scroll reveal (class added by site.js, so nothing is hidden without JS) */
