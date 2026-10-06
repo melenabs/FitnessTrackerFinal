@@ -36,7 +36,7 @@ namespace FitnessTracker.Pages.Meals
                 return NotFound();
             }
             Meal = meal;
-           ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id");
+           ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "MemberNumber");
             return Page();
         }
 

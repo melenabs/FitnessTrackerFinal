@@ -42,7 +42,7 @@
 @foreach (var item in Model.Workout) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+                @Html.DisplayFor(modelItem => item.ApplicationUser.MemberNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.WorkoutName)

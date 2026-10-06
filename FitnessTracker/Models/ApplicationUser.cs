@@ -5,6 +5,8 @@ namespace FitnessTracker.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public int MemberNumber { get; set; }
+
         public UserProfile? UserProfile { get; set; }
 
         public ICollection<Workout> Workouts { get; set; } = new List<Workout>();

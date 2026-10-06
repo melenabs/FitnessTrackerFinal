@@ -21,7 +21,7 @@ namespace FitnessTracker.Pages.Goals
 
         public IActionResult OnGet()
         {
-        ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id");
+        ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "MemberNumber");
             return Page();
         }
 
