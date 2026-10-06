@@ -1,0 +1,143 @@
+@page
+@model FitnessTracker.Pages.SearchModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1 class="h3 mb-3">Search</h1>
+
+<form method="get" class="card card-body shadow-sm mb-4">
+    <div class="input-group">
+        <input asp-for="SearchTerm" class="form-control" placeholder="Search workouts, exercises, meals and goals" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+    <div class="form-text">Searches workout name and type, exercise name and muscle group, meal name, and goal name and type.</div>
+</form>
+
+@if (Model.HasSearched)
+{
+    var total = Model.Workouts.Count + Model.Exercises.Count + Model.Meals.Count + Model.Goals.Count;
+    if (total == 0)
+    {
+        <div class="alert alert-info">No results found for "@Model.SearchTerm".</div>
+    }
+
+    if (Model.Workouts.Any())
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">Workouts <span class="badge text-bg-secondary">@Model.Workouts.Count</span></div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.Workouts[0].WorkoutName)</th>
+                            <th>@Html.DisplayNameFor(m => m.Workouts[0].WorkoutType)</th>
+                            <th>@Html.DisplayNameFor(m => m.Workouts[0].WorkoutDate)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Workouts)
+                        {
+                            <tr>
+                                <td>@item.WorkoutName</td>
+                                <td>@item.WorkoutType</td>
+                                <td>@item.WorkoutDate.ToShortDateString()</td>
+                                <td class="text-end"><a class="btn btn-sm btn-outline-secondary" asp-page="/Workouts/Details" asp-route-id="@item.ID">Details</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    if (Model.Exercises.Any())
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">Exercises <span class="badge text-bg-secondary">@Model.Exercises.Count</span></div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.Exercises[0].Name)</th>
+                            <th>@Html.DisplayNameFor(m => m.Exercises[0].MuscleGroup)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Exercises)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.MuscleGroup</td>
+                                <td class="text-end"><a class="btn btn-sm btn-outline-secondary" asp-page="/Exercises/Details" asp-route-id="@item.ID">Details</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    if (Model.Meals.Any())
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">Meals <span class="badge text-bg-secondary">@Model.Meals.Count</span></div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.Meals[0].MealName)</th>
+                            <th>@Html.DisplayNameFor(m => m.Meals[0].Calories)</th>
+                            <th>@Html.DisplayNameFor(m => m.Meals[0].MealDate)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Meals)
+                        {
+                            <tr>
+                                <td>@item.MealName</td>
+                                <td>@item.Calories</td>
+                                <td>@item.MealDate.ToShortDateString()</td>
+                                <td class="text-end"><a class="btn btn-sm btn-outline-secondary" asp-page="/Meals/Details" asp-route-id="@item.ID">Details</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    if (Model.Goals.Any())
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">Goals <span class="badge text-bg-secondary">@Model.Goals.Count</span></div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.Goals[0].GoalName)</th>
+                            <th>@Html.DisplayNameFor(m => m.Goals[0].GoalType)</th>
+                            <th>@Html.DisplayNameFor(m => m.Goals[0].TargetValue)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Goals)
+                        {
+                            <tr>
+                                <td>@item.GoalName</td>
+                                <td>@item.GoalType</td>
+                                <td>@item.TargetValue</td>
+                                <td class="text-end"><a class="btn btn-sm btn-outline-secondary" asp-page="/Goals/Details" asp-route-id="@item.ID">Details</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}

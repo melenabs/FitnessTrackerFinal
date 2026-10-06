@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)file:///C:/Users/amalede/Downloads/index%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Fitness Tracker Website Blueprint - 7 Entities</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #222;
+      max-width: 950px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1f4e79;
+      border-bottom: 3px solid #1f4e79;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      color: #1f4e79;
+      margin-top: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      color: #2f75b5;
+      margin-top: 22px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #d9eaf7;
+    }
+
+    code, pre {
+      font-family: Consolas, monospace;
+      font-size: 13px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      padding: 12px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .check {
+      color: #008000;
+      font-weight: bold;
+    }
+
+    .note {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      padding: 12px;
+      margin: 15px 0;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Fitness Tracker Website Blueprint</h1>
+<h2>7-Entity Version</h2>
+
+<h2>Project Overview</h2>
+
+<p>
+This project is a fitness tracker website built with ASP.NET Core, Razor Pages, Entity Framework Core, and authentication.
+The website allows users to track workouts, exercises, meals, and fitness goals.
+</p>
+
+<p>
+This version intentionally uses exactly <strong>7 entities</strong>.
+</p>
+
+<h2>Seven Entities</h2>
+
+<ol>
+  <li>ApplicationUser</li>
+  <li>UserProfile</li>
+  <li>Workout</li>
+  <li>Exercise</li>
+  <li>WorkoutExercise</li>
+  <li>Meal</li>
+  <li>Goal</li>
+</ol>
+
+<h2>Requirement Checklist</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Requirement</th>
+      <th>How the Design Meets It</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Include authentication</td>
+      <td>Use ASP.NET Core Identity with an <code>ApplicationUser</code> model.</td>
+    </tr>
+    <tr>
+      <td>Minimum of 5 entities</td>
+      <td>The design includes exactly 7 entities.</td>
+    </tr>
+    <tr>
+      <td>Relationships</td>
+      <td>Entities are connected through user ownership and workout/exercise tracking.</td>
+    </tr>
+    <tr>
+      <td>4 out of 5 entities must be related to at least one other entity</td>
+      <td>All 7 entities are related to at least one other entity.</td>
+    </tr>
+    <tr>
+      <td>2 entities have multiple other entities in it</td>
+      <td><code>ApplicationUser</code> contains many workouts, meals, and goals. <code>Workout</code> contains many workout exercises.</td>
+    </tr>
+    <tr>
+      <td>2 relationships must be one-to-many</td>
+      <td>Examples: one user has many workouts, one user has many meals, one user has many goals, and one workout has many workout exercises.</td>
+    </tr>
+    <tr>
+      <td>Include a search page</td>
+      <td>Add a <code>Search.cshtml</code> page to search workouts, meals, goals, and exercises.</td>
+    </tr>
+    <tr>
+      <td>Include 2 custom pages such as statistics</td>
+      <td>Add a <code>Statistics.cshtml</code> page and a <code>GoalSummary.cshtml</code> page.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Entity Purpose Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entity</th>
+      <th>Purpose</th>
+      <th>Related To</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ApplicationUser</td>
+      <td>Authentication user account</td>
+      <td>UserProfile, Workout, Meal, Goal</td>
+    </tr>
+    <tr>
+      <td>UserProfile</td>
+      <td>Stores personal fitness profile information</td>
+      <td>ApplicationUser</td>
+    </tr>
+    <tr>
+      <td>Workout</td>
+      <td>Stores workout sessions</td>
+      <td>ApplicationUser, WorkoutExercise</td>
+    </tr>
+    <tr>
+      <td>Exercise</td>
+      <td>Stores exercise library information</td>
+      <td>WorkoutExercise</td>
+    </tr>
+    <tr>
+      <td>WorkoutExercise</td>
+      <td>Connects workouts to exercises and stores sets, reps, and weight</td>
+      <td>Workout, Exercise</td>
+    </tr>
+    <tr>
+      <td>Meal</td>
+      <td>Stores food and nutrition entries</td>
+      <td>ApplicationUser</td>
+    </tr>
+    <tr>
+      <td>Goal</td>
+      <td>Stores user fitness goals</td>
+      <td>ApplicationUser</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Relationship Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Relationship</th>
+      <th>Type</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ApplicationUser → UserProfile</td>
+      <td>One-to-One</td>
+      <td>One user has one fitness profile.</td>
+    </tr>
+    <tr>
+      <td>ApplicationUser → Workouts</td>
+      <td>One-to-Many</td>
+      <td>One user can have many workouts.</td>
+    </tr>
+    <tr>
+      <td>ApplicationUser → Meals</td>
+      <td>One-to-Many</td>
+      <td>One user can log many meals.</td>
+    </tr>
+    <tr>
+      <td>ApplicationUser → Goals</td>
+      <td>One-to-Many</td>
+      <td>One user can create many fitness goals.</td>
+    </tr>
+    <tr>
+      <td>Workout → WorkoutExercises</td>
+      <td>One-to-Many</td>
+      <td>One workout can contain many workout exercise records.</td>
+    </tr>
+    <tr>
+      <td>Exercise → WorkoutExercises</td>
+      <td>One-to-Many</td>
+      <td>One exercise can appear in many workout exercise records.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h2>Model Code</h2>
+
+<h3>1. ApplicationUser.cs</h3>
+
+<pre><code>using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+
+namespace FitnessTracker.Models
+{
+    public class ApplicationUser : IdentityUser
+    {
+        public UserProfile? UserProfile { get; set; }
+
+        public ICollection&lt;Workout&gt; Workouts { get; set; } = new List&lt;Workout&gt;();
+
+        public ICollection&lt;Meal&gt; Meals { get; set; } = new List&lt;Meal&gt;();
+
+        public ICollection&lt;Goal&gt; Goals { get; set; } = new List&lt;Goal&gt;();
+    }
+}</code></pre>
+
+<h3>2. UserProfile.cs</h3>
+
+<pre><code>using System.ComponentModel.DataAnnotations;
+
+namespace FitnessTracker.Models
+{
+    public class UserProfile
+    {
+        public int ID { get; set; }
+
+        public string? ApplicationUserId { get; set; }
+
+        public ApplicationUser? ApplicationUser { get; set; }
+
+        [Display(Name = "Full Name")]
+        public string Name { get; set; } = string.Empty;
+
+        public int? Age { get; set; }
+
+        public double? Weight { get; set; }
+
+        public double? Height { get; set; }
+
+        [Display(Name = "Fitness Goal")]
+        public string? FitnessGoal { get; set; }
+    }
+}</code></pre>
+
+<h3>3. Workout.cs</h3>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace FitnessTracker.Models
+{
+    public class Workout
+    {
+        public int ID { get; set; }
+
+        public string? ApplicationUserId { get; set; }
+
+        public ApplicationUser? ApplicationUser { get; set; }
+
+        [Display(Name = "Workout Name")]
+        public string WorkoutName { get; set; } = string.Empty;
+
+        [Display(Name = "Workout Type")]
+        public string? WorkoutType { get; set; }
+
+        [Display(Name = "Duration Minutes")]
+        public int? DurationMinutes { get; set; }
+
+        [Display(Name = "Calories Burned")]
+        public int? CaloriesBurned { get; set; }
+
+        [Display(Name = "Workout Date")]
+        public DateTime WorkoutDate { get; set; }
+
+        public string? Notes { get; set; }
+
+        public ICollection&lt;WorkoutExercise&gt; WorkoutExercises { get; set; } = new List&lt;WorkoutExercise&gt;();
+    }
+}</code></pre>
+
+<h3>4. Exercise.cs</h3>
+
+<pre><code>using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace FitnessTracker.Models
+{
+    public class Exercise
+    {
+        public int ID { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+
+        [Display(Name = "Muscle Group")]
+        public string? MuscleGroup { get; set; }
+
+        public string? Description { get; set; }
+
+        public ICollection&lt;WorkoutExercise&gt; WorkoutExercises { get; set; } = new List&lt;WorkoutExercise&gt;();
+    }
+}</code></pre>
+
+<h3>5. WorkoutExercise.cs</h3>
+
+<pre><code>using System.ComponentModel.DataAnnotations;
+
+namespace FitnessTracker.Models
+{
+    public class WorkoutExercise
+    {
+        public int ID { get; set; }
+
+        public int WorkoutID { get; set; }
+
+        public Workout? Workout { get; set; }
+
+        public int ExerciseID { get; set; }
+
+        public Exercise? Exercise { get; set; }
+
+        public int? Sets { get; set; }
+
+        public int? Reps { get; set; }
+
+        [Display(Name = "Weight Used")]
+        public double? WeightUsed { get; set; }
+    }
+}</code></pre>
+
+<h3>6. Meal.cs</h3>
+
+<pre><code>using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace FitnessTracker.Models
+{
+    public class Meal
+    {
+        public int ID { get; set; }
+
+        public string? ApplicationUserId { get; set; }
+
+        public ApplicationUser? ApplicationUser { get; set; }
+
+        [Display(Name = "Meal Name")]
+        public string MealName { get; set; } = string.Empty;
+
+        public int? Calories { get; set; }
+
+        public double? Protein { get; set; }
+
+        public double? Carbs { get; set; }
+
+        public double? Fat { get; set; }
+
+        [Display(Name = "Meal Date")]
+        public DateTime MealDate { get; set; }
+
+        public string? Notes { get; set; }
+    }
+}</code></pre>
+
+<h3>7. Goal.cs</h3>
+
+<pre><code>using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FitnessTracker.Models
+{
+    public class Goal
+    {
+        public int ID { get; set; }
+
+        public string? ApplicationUserId { get; set; }
+
+        public ApplicationUser? ApplicationUser { get; set; }
+
+        [Display(Name = "Goal Name")]
+        public string GoalName { get; set; } = string.Empty;
+
+        [Display(Name = "Goal Type")]
+        public string? GoalType { get; set; }
+
+        [Display(Name = "Target Value")]
+        public double? TargetValue { get; set; }
+
+        [Display(Name = "Current Value")]
+        public double? CurrentValue { get; set; }
+
+        [Display(Name = "Target Date")]
+        public DateTime? TargetDate { get; set; }
+
+        [NotMapped]
+        public bool IsCompleted =&gt; CurrentValue.HasValue
+                                   &amp;&amp; TargetValue.HasValue
+                                   &amp;&amp; CurrentValue.Value &gt;= TargetValue.Value;
+    }
+}</code></pre>
+
+<div class="page-break"></div>
+
+<h2>ApplicationDbContext Example</h2>
+
+<pre><code>using FitnessTracker.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+namespace FitnessTracker.Data
+{
+    public class ApplicationDbContext : IdentityDbContext&lt;ApplicationUser&gt;
+    {
+        public ApplicationDbContext(DbContextOptions&lt;ApplicationDbContext&gt; options)
+            : base(options)
+        {
+        }
+
+        public DbSet&lt;UserProfile&gt; UserProfiles { get; set; }
+
+        public DbSet&lt;Workout&gt; Workouts { get; set; }
+
+        public DbSet&lt;Exercise&gt; Exercises { get; set; }
+
+        public DbSet&lt;WorkoutExercise&gt; WorkoutExercises { get; set; }
+
+        public DbSet&lt;Meal&gt; Meals { get; set; }
+
+        public DbSet&lt;Goal&gt; Goals { get; set; }
+    }
+}</code></pre>
+
+<h2>Search Page</h2>
+
+<p>
+Create a custom search page named <code>Search.cshtml</code>.
+This page can search across workouts, meals, goals, and exercises.
+</p>
+
+<h3>Searchable Fields</h3>
+
+<ul>
+  <li>Workout name</li>
+  <li>Workout type</li>
+  <li>Exercise name</li>
+  <li>Muscle group</li>
+  <li>Meal name</li>
+  <li>Goal name</li>
+  <li>Goal type</li>
+</ul>
+
+<h3>Example Search Logic</h3>
+
+<pre><code>public string? SearchTerm { get; set; }
+
+public IList&lt;Workout&gt; Workouts { get; set; } = new List&lt;Workout&gt;();
+
+public async Task OnGetAsync(string? searchTerm)
+{
+    SearchTerm = searchTerm;
+
+    var query = _context.Workouts.AsQueryable();
+
+    if (!string.IsNullOrEmpty(searchTerm))
+    {
+        query = query.Where(w =&gt; w.WorkoutName.Contains(searchTerm)
+                              || (w.WorkoutType != null &amp;&amp; w.WorkoutType.Contains(searchTerm)));
+    }
+
+    Workouts = await query.ToListAsync();
+}</code></pre>
+
+<h2>Custom Page 1: Statistics Page</h2>
+
+<p>
+Create a custom page named <code>Statistics.cshtml</code>.
+This page summarizes the user's fitness activity.
+</p>
+
+<h3>Possible Statistics</h3>
+
+<ul>
+  <li>Total workouts</li>
+  <li>Total workout calories burned</li>
+  <li>Average workout duration</li>
+  <li>Total meals logged</li>
+  <li>Total goals created</li>
+</ul>
+
+<h3>Example Statistics Logic</h3>
+
+<pre><code>TotalWorkouts = await _context.Workouts.CountAsync();
+
+TotalCaloriesBurned = await _context.Workouts
+    .SumAsync(w =&gt; w.CaloriesBurned ?? 0);
+
+AverageWorkoutDuration = await _context.Workouts
+    .AverageAsync(w =&gt; w.DurationMinutes ?? 0);
+
+TotalMeals = await _context.Meals.CountAsync();
+
+TotalGoals = await _context.Goals.CountAsync();</code></pre>
+
+<h2>Custom Page 2: Goal Summary Page</h2>
+
+<p>
+Create a custom page named <code>GoalSummary.cshtml</code>.
+This page summarizes the user's fitness goals.
+</p>
+
+<h3>Possible Goal Summary Data</h3>
+
+<ul>
+  <li>Total goals</li>
+  <li>Completed goals</li>
+  <li>Incomplete goals</li>
+  <li>Goals near target date</li>
+  <li>Average progress toward goals</li>
+</ul>
+
+<h3>Example Goal Summary Logic</h3>
+
+<pre><code>CompletedGoals = await _context.Goals
+    .CountAsync(g =&gt; g.CurrentValue &gt;= g.TargetValue);
+
+IncompleteGoals = await _context.Goals
+    .CountAsync(g =&gt; g.CurrentValue &lt; g.TargetValue);
+
+TotalGoals = await _context.Goals.CountAsync();</code></pre>
+
+<h2>Recommended Project Structure</h2>
+
+<pre><code>Models
+ ├── ApplicationUser.cs
+ ├── UserProfile.cs
+ ├── Workout.cs
+ ├── Exercise.cs
+ ├── WorkoutExercise.cs
+ ├── Meal.cs
+ └── Goal.cs
+
+Pages
+ ├── Workouts
+ ├── Exercises
+ ├── WorkoutExercises
+ ├── Meals
+ ├── Goals
+ ├── Search.cshtml
+ ├── Statistics.cshtml
+ └── GoalSummary.cshtml</code></pre>
+
+<h2>Final Requirement Confirmation</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Requirement</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Authentication included</td>
+      <td><span class="check">Yes</span></td>
+    </tr>
+    <tr>
+      <td>Exactly 7 entities</td>
+      <td><span class="check">Yes</span></td>
+    </tr>
+    <tr>
+      <td>At least 5 entities</td>
+      <td><span class="check">Yes</span></td>
+    </tr>
+    <tr>
+      <td>4 out of 5 entities related to another entity</td>
+      <td><span class="check">Yes</span>, all 7 are related</td>
+    </tr>
+    <tr>
+      <td>2 entities contain multiple other entities</td>
+      <td><span class="check">Yes</span>: ApplicationUser and Workout</td>
+    </tr>
+    <tr>
+      <td>2 one-to-many relationships</td>
+      <td><span class="check">Yes</span>: User to Workouts, User to Meals, User to Goals, Workout to WorkoutExercises</td>
+    </tr>
+    <tr>
+      <td>Search page included</td>
+      <td><span class="check">Yes</span>: Search.cshtml</td>
+    </tr>
+    <tr>
+      <td>2 custom pages included</td>
+      <td><span class="check">Yes</span>: Statistics.cshtml and GoalSummary.cshtml</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <strong>To save as PDF:</strong> Open this document in a browser, Word, or Google Docs. Then choose
+  <strong>Print</strong> or <strong>Save As</strong> and select <strong>PDF</strong>.
+</div>
+
+
+
+</body></html>

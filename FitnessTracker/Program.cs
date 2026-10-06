@@ -21,6 +21,7 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AuthorizeFolder("/WorkoutExercises");
     options.Conventions.AuthorizeFolder("/Meals");
     options.Conventions.AuthorizeFolder("/Goals");
+    options.Conventions.AuthorizePage("/Search");
 });
 
 var app = builder.Build();
