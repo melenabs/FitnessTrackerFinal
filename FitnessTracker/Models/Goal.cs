@@ -25,6 +25,7 @@ namespace FitnessTracker.Models
         public double? CurrentValue { get; set; }
 
         [Display(Name = "Target Date")]
+        [DataType(DataType.Date)]
         public DateTime? TargetDate { get; set; }
 
         [NotMapped]
